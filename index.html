@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta — Sistema Comercial Unificado en GHL · ND_</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --verde: #3D9E28;
+  --verde-dark: #2C7A1C;
+  --verde-dim: rgba(61,158,40,0.09);
+  --crema: #F4F0E8;
+  --crema-dark: #E5DFCF;
+  --crema-mid: #EDE8DC;
+  --tinta: #181C19;
+  --tinta-mid: #363B37;
+  --tinta-suave: #636860;
+  --blanco: #FAF8F2;
+  --riesgo: #B05840;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--crema);
+  color: var(--tinta);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  background: var(--crema);
+  padding: 26px 0;
+  position: relative;
+  z-index: 20;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--tinta);
+}
+
+.nav-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--tinta-suave);
+}
+
+/* HERO */
+.hero {
+  background: var(--verde);
+  padding: 100px 0 84px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: multiply;
+}
+.hero .container { position: relative; z-index: 3; }
+
+.hero-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+  display: block;
+}
+
+.hero h1 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 4.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 28px;
+  max-width: 880px;
+}
+.hero h1 em { font-style: italic; color: rgba(255,255,255,0.32); }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  color: rgba(255,255,255,0.7);
+  max-width: 580px;
+  margin-bottom: 44px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.hero-meta-row {
+  display: flex;
+  gap: 56px;
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  flex-wrap: wrap;
+}
+.hero-meta-item .lbl {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.42);
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.hero-meta-item .val {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* SECTIONS */
+section { padding: 100px 0; background: var(--crema); }
+section.alt { background: var(--crema-mid); }
+
+.section-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--verde);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 18px;
+}
+
+section h2 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--tinta);
+  margin-bottom: 18px;
+  max-width: 700px;
+}
+
+.section-sub {
+  font-size: 1.02rem;
+  color: var(--tinta-suave);
+  max-width: 560px;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 56px;
+}
+
+/* PROBLEMA */
+.prob-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--crema-dark);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.prob-card {
+  background: var(--crema);
+  padding: 38px 32px;
+  transition: background 0.2s;
+}
+.prob-card:hover { background: var(--blanco); }
+.prob-num {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 2.6rem;
+  color: var(--crema-dark);
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: -0.05em;
+}
+.prob-card h3 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--tinta);
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+.prob-card p {
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* SOLUCIÓN BLOQUES */
+.sol-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sol-block {
+  background: var(--blanco);
+  border: 1px solid var(--crema-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.sol-block.open { border-color: var(--verde); }
+
+.sol-head {
+  padding: 32px 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  transition: background 0.15s;
+}
+.sol-head:hover { background: var(--crema); }
+
+.sol-num {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--verde);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.sol-head-body {
+  flex: 1;
+}
+
+.sol-title {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--tinta);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.sol-resumen {
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 640px;
+}
+
+.sol-toggle {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--verde);
+  background: var(--verde-dim);
+  border: 1px solid rgba(61,158,40,0.18);
+  border-radius: 100px;
+  padding: 6px 14px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.sol-block.open .sol-toggle { background: var(--verde); color: #fff; }
+.sol-toggle .arrow { transition: transform 0.25s; }
+.sol-block.open .sol-toggle .arrow { transform: rotate(180deg); }
+
+.sol-detail {
+  display: none;
+  border-top: 1px solid var(--crema-dark);
+  padding: 32px 36px;
+  background: var(--crema-mid);
+}
+.sol-block.open .sol-detail { display: block; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+@media (max-width: 720px) { .detail-grid { grid-template-columns: 1fr; } }
+
+.detail-col h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--verde);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+.detail-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.detail-col ul li {
+  font-size: 0.88rem;
+  color: var(--tinta-mid);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+.detail-col ul li::before {
+  content: '→';
+  color: var(--verde);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* PROCESO */
+.proceso-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--crema-dark);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.proc-card {
+  background: var(--crema);
+  padding: 44px 32px;
+}
+
+.proc-num {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 2.6rem;
+  color: var(--crema-dark);
+  line-height: 1;
+  margin-bottom: 22px;
+  letter-spacing: -0.05em;
+}
+
+.proc-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.66rem;
+  color: var(--verde);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.proc-card h3 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--tinta);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.proc-card p {
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+
+.proc-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.proc-items li {
+  font-size: 0.83rem;
+  color: var(--tinta-suave);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 300;
+}
+.proc-items li::before {
+  content: '→';
+  color: var(--verde);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* INVERSIÓN */
+.inv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 720px) { .inv-row { grid-template-columns: 1fr; } }
+
+.inv-card {
+  background: var(--blanco);
+  border: 1px solid var(--crema-dark);
+  border-radius: 16px;
+  padding: 38px 32px;
+  position: relative;
+}
+
+.inv-card.destacado {
+  background: var(--verde);
+  isolation: isolate;
+  overflow: hidden;
+  border-color: var(--verde);
+}
+.inv-card.destacado::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.36'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: multiply;
+}
+.inv-card.destacado > * { position: relative; z-index: 2; }
+
+.inv-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--verde);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+  display: block;
+}
+.inv-card.destacado .inv-tag { color: rgba(255,255,255,0.55); }
+
+.inv-card h3 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--tinta);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.inv-card.destacado h3 { color: #fff; }
+
+.inv-precio {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--tinta);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 22px 0 8px;
+}
+.inv-card.destacado .inv-precio { color: #fff; }
+
+.inv-precio span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--tinta-suave);
+  letter-spacing: 0;
+}
+.inv-card.destacado .inv-precio span { color: rgba(255,255,255,0.6); }
+
+.inv-desc {
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.inv-card.destacado .inv-desc { color: rgba(255,255,255,0.7); }
+
+.inv-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.inv-list li {
+  font-size: 0.86rem;
+  color: var(--tinta-mid);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.inv-card.destacado .inv-list li { color: rgba(255,255,255,0.85); }
+
+.inv-list li::before {
+  content: '→';
+  color: var(--verde);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.inv-card.destacado .inv-list li::before { color: rgba(255,255,255,0.6); }
+
+.inv-nota {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--crema-dark);
+  font-size: 0.82rem;
+  color: var(--tinta-suave);
+  font-weight: 300;
+  font-style: italic;
+}
+.inv-card.destacado .inv-nota {
+  border-top-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.65);
+}
+
+/* UPGRADES */
+.up-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 720px) { .up-grid { grid-template-columns: 1fr; } }
+
+.up-card {
+  background: var(--blanco);
+  border: 1px solid var(--crema-dark);
+  border-radius: 12px;
+  padding: 26px 28px;
+}
+
+.up-card h3 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--tinta);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.up-card p {
+  font-size: 0.88rem;
+  color: var(--tinta-suave);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* CTA */
+.cta-section {
+  background: var(--verde);
+  padding: 120px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)' opacity='0.42'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: multiply;
+}
+.cta-section .container { position: relative; z-index: 3; }
+.cta-section h2 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 22px;
+}
+.cta-section h2 em { font-style: italic; color: rgba(255,255,255,0.3); }
+.cta-section p {
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.62);
+  margin-bottom: 44px;
+  font-weight: 300;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  color: var(--verde-dark);
+  padding: 17px 38px;
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-cta:hover { opacity: 0.92; transform: translateY(-2px); }
+
+.cta-note {
+  margin-top: 22px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.32);
+}
+
+/* FOOTER */
+footer {
+  background: var(--crema);
+  padding: 32px 0;
+  border-top: 1px solid var(--crema-dark);
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--tinta-suave);
+}
+
+/* FADE */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .prob-grid, .proceso-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 64px 0 56px; }
+  .hero-meta-row { gap: 24px; }
+  section { padding: 72px 0; }
+  .cta-section { padding: 80px 0; }
+  .sol-head { padding: 24px 22px; gap: 16px; flex-wrap: wrap; }
+  .sol-detail { padding: 24px 22px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">ND_</div>
+      <div class="nav-meta">// propuesta · jean</div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <span class="hero-tag">// sistema comercial unificado · GHL</span>
+    <h1>Tu equipo de ventas operando<br><em>desde un solo lugar.</em></h1>
+    <p class="hero-sub">Setters, closers y post-venta en un solo sistema. Sin doble carga, sin saltar entre herramientas. Con métricas en vivo y automatizaciones que el sheet nunca pudo tener.</p>
+    <div class="hero-meta-row">
+      <div class="hero-meta-item"><div class="lbl">// PROPUESTA PARA</div><div class="val">Jean</div></div>
+      <div class="hero-meta-item"><div class="lbl">// IMPLEMENTACIÓN</div><div class="val">5–6 semanas</div></div>
+      <div class="hero-meta-item"><div class="lbl">// MODALIDAD</div><div class="val">Setup + retainer</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section>
+  <div class="container">
+    <span class="section-tag fade-up">// el contexto</span>
+    <h2 class="fade-up">Lo que está pasando<br>hoy en tu operación</h2>
+    <p class="section-sub fade-up">El CRM que armamos funciona, pero el equipo creció y el sistema quedó partido. Esto es lo que veo.</p>
+    <div class="prob-grid fade-up">
+      <div class="prob-card">
+        <div class="prob-num">01</div>
+        <h3>Dos sistemas<br>en paralelo</h3>
+        <p>GHL captura los leads. El sheet gestiona setters, closers, métricas y cobros. Cargar lo mismo dos veces consume tiempo del equipo todos los días.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">02</div>
+        <h3>El sheet<br>no automatiza</h3>
+        <p>Los recordatorios, seguimientos, alertas y métricas en vivo solo se pueden hacer en GHL. En el sheet todo depende de que alguien lo actualice manualmente.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">03</div>
+        <h3>Visibilidad<br>fragmentada</h3>
+        <p>Saber el rendimiento real de cada setter o closer requiere abrir varias pestañas y hacer cuentas. Con todo en GHL, el dashboard se actualiza solo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="alt">
+  <div class="container">
+    <span class="section-tag fade-up">// lo que cambia</span>
+    <h2 class="fade-up">Qué gana el equipo<br>con el sistema unificado</h2>
+    <p class="section-sub fade-up">No es solo orden. Es que cada persona del equipo opera con más foco, más información y menos fricción.</p>
+    <div class="prob-grid fade-up">
+      <div class="prob-card">
+        <div class="prob-num">01</div>
+        <h3>Visibilidad real<br>del negocio</h3>
+        <p>Un dashboard que muestra cómo le va al negocio en tiempo real: leads por canal (Instagram, Facebook), % de agenda de cada setter, % de cierre de cada closer, ventas en $$ y volumen total. Todo en una pantalla, sin armar ningún reporte.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">02</div>
+        <h3>Visión separada por<br>rol, sin ruido</h3>
+        <p>El setter ve sus leads y su agenda. El closer ve sus llamadas y sus resultados. Cada uno enfocado al máximo en lo que puede controlar.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">03</div>
+        <h3>Menos carga<br>manual</h3>
+        <p>Los movimientos entre pipelines, las notificaciones internas y las entradas de nuevos leads se hacen solos. El equipo opera, el sistema registra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section>
+  <div class="container">
+    <span class="section-tag fade-up">// la solución</span>
+    <h2 class="fade-up">Cuatro sistemas<br>en uno solo</h2>
+    <p class="section-sub fade-up">Cada bloque resuelve una parte de la operación. Hacé click en "ver detalle" para ver cómo se compone técnicamente.</p>
+
+    <div class="sol-stack fade-up">
+
+      <!-- BLOQUE 1 -->
+      <div class="sol-block">
+        <div class="sol-head" onclick="toggleSol(this)">
+          <span class="sol-num">// 01</span>
+          <div class="sol-head-body">
+            <div class="sol-title">Sistema de captación y agendamiento</div>
+            <p class="sol-resumen">Los setters operan desde un pipeline propio, con visibilidad de qué leads tienen activos, en qué etapa, y qué cerró cada uno — sin contaminar su flujo con métricas que no controlan.</p>
+          </div>
+          <div class="sol-toggle">ver detalle <span class="arrow">▾</span></div>
+        </div>
+        <div class="sol-detail">
+          <div class="detail-grid">
+            <div class="detail-col">
+              <h4>// PIPELINE DEL SETTER</h4>
+              <ul>
+                <li>Nuevo contacto (entrada automática desde Instagram / formularios)</li>
+                <li>Contactado</li>
+                <li>Calificando</li>
+                <li>Agendado (pasa automáticamente al pipeline del closer)</li>
+                <li>No calificado</li>
+                <li>Descartado</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>// CAMPOS Y AUTOMATIZACIONES</h4>
+              <ul>
+                <li>Campo "Setter asignado" para filtros y métricas</li>
+                <li>Campo "Fuente" y "Medio de agenda"</li>
+                <li>Campo "Contexto setter (pre call)"</li>
+                <li>Movimiento automático a pipeline del closer cuando agenda</li>
+                <li>Vista filtrada del resultado del closer (feedback sin contaminar pipeline)</li>
+                <li><strong>~60% del pipeline automatizado</strong> — entradas, movimientos y notificaciones sin carga manual</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 2 -->
+      <div class="sol-block">
+        <div class="sol-head" onclick="toggleSol(this)">
+          <span class="sol-num">// 02</span>
+          <div class="sol-head-body">
+            <div class="sol-title">Sistema de cierre con visibilidad real</div>
+            <p class="sol-resumen">Los closers ven solo lo que les corresponde: agendas listas para llamar. El contacto entra automáticamente — el closer solo actualiza el resultado. Show rate, tasa de cierre y AOV calculados solos, por persona y totales.</p>
+          </div>
+          <div class="sol-toggle">ver detalle <span class="arrow">▾</span></div>
+        </div>
+        <div class="sol-detail">
+          <div class="detail-grid">
+            <div class="detail-col">
+              <h4>// PIPELINE DEL CLOSER</h4>
+              <ul>
+                <li>Agendado (entra automáticamente desde el setter)</li>
+                <li>Cerrado → pasa a post-venta automáticamente</li>
+                <li>No show</li>
+                <li>Seguimiento (interesado, no cerró todavía)</li>
+                <li>Perdido</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>// CAMPOS Y MÉTRICAS</h4>
+              <ul>
+                <li>Closer asignado, Programa, Estrategia</li>
+                <li>Contexto closer (post call)</li>
+                <li>Cash Collected día 1, Monto total del trato</li>
+                <li>Métrica calculada: Show rate (presentados / agendados)</li>
+                <li>Métrica calculada: Tasa de cierre (cerrados / llamadas)</li>
+                <li>Métrica calculada: AOV (cash collected / unidades cerradas)</li>
+                <li><strong>Entrada 100% automática</strong> — el closer solo marca el resultado de la llamada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 3 -->
+      <div class="sol-block">
+        <div class="sol-head" onclick="toggleSol(this)">
+          <span class="sol-num">// 03</span>
+          <div class="sol-head-body">
+            <div class="sol-title">Seguimiento de clientes y estado de pagos</div>
+            <p class="sol-resumen">Cada cliente cerrado entra a un pipeline propio con visibilidad clara de su estado de pago. No importa si paga en 2 cuotas o en 4 — el sistema muestra cuánto falta y quién tiene pago pendiente. El cuándo contactar lo decide el equipo, pero el sistema lo tiene todo visible.</p>
+          </div>
+          <div class="sol-toggle">ver detalle <span class="arrow">▾</span></div>
+        </div>
+        <div class="sol-detail">
+          <div class="detail-grid">
+            <div class="detail-col">
+              <h4>// PIPELINE POST-VENTA</h4>
+              <ul>
+                <li>Cliente nuevo</li>
+                <li>Pago parcial</li>
+                <li>Pago completo</li>
+                <li>Baja</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>// CAMPOS DE COBRANZA</h4>
+              <ul>
+                <li>Monto total del trato (carga única al cerrar)</li>
+                <li>Monto cobrado acumulado (se va sumando con cada pago)</li>
+                <li>Saldo pendiente (cálculo automático)</li>
+                <li>Fecha próximo pago acordado</li>
+                <li>El equipo entra y ve al instante qué clientes tienen saldo pendiente — sin buscar en el sheet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 4 -->
+      <div class="sol-block">
+        <div class="sol-head" onclick="toggleSol(this)">
+          <span class="sol-num">// 04</span>
+          <div class="sol-head-body">
+            <div class="sol-title">Tablero de rendimiento del equipo</div>
+            <p class="sol-resumen">Una sola pantalla con el rendimiento de todos los setters y closers en tiempo real. Reemplaza la vista que les gustaba del sheet, pero sin que nadie tenga que actualizarla a mano.</p>
+          </div>
+          <div class="sol-toggle">ver detalle <span class="arrow">▾</span></div>
+        </div>
+        <div class="sol-detail">
+          <div class="detail-grid">
+            <div class="detail-col">
+              <h4>// MÉTRICAS POR PERSONA</h4>
+              <ul>
+                <li>Cash Collected del mes</li>
+                <li>Unidades cerradas</li>
+                <li>Llamadas realizadas</li>
+                <li>Tasa de cierre %</li>
+                <li>AOV (valor promedio)</li>
+                <li>Comparativa entre setters / entre closers</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>// CONSTRUCCIÓN</h4>
+              <ul>
+                <li>Métricas personalizadas nativas de GHL</li>
+                <li>Filtros por mes, por persona, por programa</li>
+                <li>Actualización en vivo (sin carga manual)</li>
+                <li>Acceso individual o conjunto según rol</li>
+                <li>Reemplaza la sección "Leaderboard" del sheet</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="alt">
+  <div class="container">
+    <span class="section-tag fade-up">// cómo lo construyo</span>
+    <h2 class="fade-up">Tres fases.<br>Sin sorpresas.</h2>
+    <p class="section-sub fade-up">Un proceso claro de principio a fin. Sabés en todo momento qué viene y qué se está haciendo.</p>
+
+    <div class="proceso-grid fade-up">
+      <div class="proc-card">
+        <div class="proc-num">01</div>
+        <span class="proc-tag">// FASE 1</span>
+        <h3>Diseño y construcción</h3>
+        <p>Diseñamos los pipelines, campos y métricas en papel. Validás antes de que toque GHL. Después construyo todo en la subcuenta y testeo end-to-end.</p>
+        <ul class="proc-items">
+          <li>Diseño de pipelines validado</li>
+          <li>Campos personalizados</li>
+          <li>Automatizaciones de movimiento</li>
+          <li>Métricas y dashboard</li>
+        </ul>
+      </div>
+      <div class="proc-card">
+        <div class="proc-num">02</div>
+        <span class="proc-tag">// FASE 2</span>
+        <h3>Capacitación y lanzamiento</h3>
+        <p>Sesiones separadas para setters y closers. Armamos una base de conocimientos interna para que el equipo tenga respuestas siempre disponibles. Migramos los clientes con pagos pendientes y hacemos el lanzamiento.</p>
+        <ul class="proc-items">
+          <li>Capacitación a setters</li>
+          <li>Capacitación a closers</li>
+          <li>Base de conocimientos interna</li>
+          <li>Migración de clientes con pagos pendientes</li>
+          <li>Lanzamiento + 2 semanas de acompañamiento en caliente</li>
+        </ul>
+      </div>
+      <div class="proc-card">
+        <div class="proc-num">03</div>
+        <span class="proc-tag">// FASE 3</span>
+        <h3>Acompañamiento mensual</h3>
+        <p>Después del lanzamiento, no desaparezco. Revisamos métricas reales cada mes, ajustamos lo que el uso del equipo va mostrando, y planeamos la próxima mejora.</p>
+        <ul class="proc-items">
+          <li>Revisión mensual de métricas</li>
+          <li>Soporte y ajustes menores</li>
+          <li>Identificación de mejoras</li>
+          <li>Roadmap de upgrades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section>
+  <div class="container">
+    <span class="section-tag fade-up">// inversión</span>
+    <h2 class="fade-up">Setup + retainer<br>mensual</h2>
+    <p class="section-sub fade-up">Un pago único por la implementación. Una mensualidad para mantener el sistema vivo, ajustarlo y mejorarlo en el tiempo.</p>
+
+    <div class="inv-row fade-up">
+
+      <div class="inv-card destacado">
+        <span class="inv-tag">// IMPLEMENTACIÓN COMPLETA</span>
+        <h3>Setup</h3>
+        <div class="inv-precio">USD 1.500 <span>· pago único</span></div>
+        <p class="inv-desc">Todo lo necesario para que el sistema esté vivo y el equipo operando: diseño, construcción, capacitación y lanzamiento.</p>
+        <ul class="inv-list">
+          <li>3 pipelines diseñados, construidos y validados</li>
+          <li>Campos personalizados y automatizaciones</li>
+          <li>Métricas calculadas y dashboard de equipo</li>
+          <li>Base de conocimientos interna para el equipo</li>
+          <li>Capacitación a setters y closers</li>
+          <li>Migración de clientes con pagos pendientes</li>
+          <li>Lanzamiento + 2 semanas de acompañamiento en caliente (incluidas en las 5–6 semanas)</li>
+        </ul>
+        <div class="inv-nota">Pago: 50% al arrancar, 50% al lanzamiento.</div>
+      </div>
+
+      <div class="inv-card">
+        <span class="inv-tag">// ACOMPAÑAMIENTO CONTINUO</span>
+        <h3>Retainer</h3>
+        <div class="inv-precio">USD 250 <span>· por mes</span></div>
+        <p class="inv-desc">Soporte, ajustes y mejora continua una vez que el sistema está en marcha. Arranca al terminar la implementación.</p>
+        <ul class="inv-list">
+          <li>Revisión mensual de métricas</li>
+          <li>Ajustes menores y resolución de bugs</li>
+          <li>Soporte directo por WhatsApp</li>
+          <li>Identificación de próximas mejoras</li>
+          <li>Hasta 4 horas de configuración / mes incluidas</li>
+        </ul>
+        <div class="inv-nota">Arranca al terminar la implementación. Cancelable mes a mes.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- UPGRADES -->
+<section class="alt">
+  <div class="container">
+    <span class="section-tag fade-up">// posibles upgrades</span>
+    <h2 class="fade-up">Lo que podemos sumar<br>más adelante</h2>
+    <p class="section-sub fade-up">No incluido en este scope. Tiene sentido evaluarlo cuando el sistema base esté funcionando con datos reales (3–4 meses).</p>
+
+    <div class="up-grid fade-up">
+      <div class="up-card">
+        <h3>Recordatorios automáticos pre-call por WhatsApp</h3>
+        <p>Mensajes automáticos antes de cada llamada para subir el show rate y nutrir al lead entre que agenda y se presenta. Reduce no shows sin que nadie tenga que mandar nada a mano.</p>
+      </div>
+      <div class="up-card">
+        <h3>Fathom — IA en llamadas</h3>
+        <p>Fathom se une automáticamente a cada llamada, transcribe y genera un resumen post-call. Eso puede volcarse directo al contacto en GHL, eliminando el campo "contexto closer" manual.</p>
+      </div>
+      <div class="up-card">
+        <h3>Lead scoring automático</h3>
+        <p>El sistema identifica los leads más calientes según su comportamiento, para que el closer use su tiempo en los que tienen más probabilidad de cerrar. Requiere 3–4 meses de data limpia en GHL para calibrarlo bien.</p>
+      </div>
+      <div class="up-card">
+        <h3>Sistema de reactivación de leads fríos</h3>
+        <p>Workflows automáticos que recuperan leads que quedaron en seguimiento o no shows, sin que nadie tenga que acordarse de hacerlo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <h2>¿<em>Arrancamos?</em></h2>
+    <p>Si te cierra, lo hablamos por WhatsApp y arrancamos esta misma semana.</p>
+    <a href="https://wa.me/541123662563" class="btn-cta" target="_blank">hablemos por WhatsApp →</a>
+    <div class="cta-note">// también podemos coordinar una llamada si querés revisar algo</div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">© 2026 Nahuel Decima · propuesta confidencial · jean</div>
+</footer>
+
+<script>
+function toggleSol(head) {
+  const block = head.closest('.sol-block');
+  block.classList.toggle('open');
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
